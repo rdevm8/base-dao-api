@@ -58,6 +58,9 @@ builder.Services.AddGraphQLServer()
 //AUTO MAPPER
 builder.Services.AddSingleton(mapper);
 
+//builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(options =>
+//options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
 

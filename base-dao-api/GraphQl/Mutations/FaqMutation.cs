@@ -22,8 +22,48 @@ namespace base_dao_api.GraphQl.Mutations
             [UseFluentValidation, UseValidator<FaqPayloadValidator>]  FaqPayload faq)
         {
             Faq res = _mapper.Map<Faq>(faq);
+            res.Order = _unitOfWork.Faq.GetMaxFaqOrder() + 1;
 
             _unitOfWork.Faq.Add(res);
+
+            await _unitOfWork.SaveAsync();
+            return res;
+        }
+
+        public async Task<Faq> UpdateFaq([Service] IUnitOfWork _unitOfWork,
+            Guid id,
+            [UseFluentValidation, UseValidator<FaqPayloadValidator>] FaqPayload faq)
+        {
+            Faq res = _unitOfWork.Faq.Get(id);
+
+            if (res == null)
+            {
+                throw new GraphQLException(new Error("Faq not found!"));
+            }
+
+            res.Question = faq.Question;
+            res.Answer = faq.Answer;
+            res.UpdateDttm = DateTime.UtcNow;
+
+            _unitOfWork.Faq.Update(res);
+
+            await _unitOfWork.SaveAsync();
+            return res;
+        }
+
+        public async Task<Faq> DeleteFaq([Service] IUnitOfWork _unitOfWork,
+            Guid id)
+        {
+            Faq res = _unitOfWork.Faq.Get(id);
+
+            if (res == null)
+            {
+                throw new GraphQLException(new Error("Faq not found!"));
+            }
+
+            res.IsDeleted = true;
+
+            _unitOfWork.Faq.Update(res);
 
             await _unitOfWork.SaveAsync();
             return res;

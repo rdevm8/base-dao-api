@@ -4,5 +4,6 @@ namespace base_dao_api.Repositories.Interfaces
 {
     public interface IFaqRepository : IGenericRepository<Faq>
     {
+        int GetMaxFaqOrder();
     }
 }

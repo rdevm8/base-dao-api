@@ -9,9 +9,14 @@ namespace base_dao_api.GraphQl.Validators
         {
             RuleFor(x => x.Question)
                 .MinimumLength(1)
-                .MaximumLength(250)
-                .WithMessage("Question must be between 1 - 250 characters")
-                .WithErrorCode("QUESTION_LENGTH");
+                .MaximumLength(250);
+
+            RuleFor(x => x.Answer)
+                .MinimumLength(1)
+                .MaximumLength(250);
+
+            RuleFor(x => x.Order)
+                .GreaterThan(0);
         }
     }
 }

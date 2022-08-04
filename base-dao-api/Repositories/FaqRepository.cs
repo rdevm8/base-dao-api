@@ -8,7 +8,15 @@ namespace base_dao_api.Repositories
     {
         public FaqRepository(ApplicationDbContext context) : base(context)
         {
+        }
 
+        public int GetMaxFaqOrder()
+        {
+            int res = 0;
+
+            res = base._context.Faqs.Max(x => x.Order);
+
+            return res;
         }
     }
 }

@@ -12,6 +12,11 @@ namespace base_dao_api.Repositories
             _context = context;
         }
 
+        public T Get(Guid id)
+        {
+            return _context.Set<T>().Find(id);
+        }
+
         public void Add(T entity)
         {
             _context.Set<T>().Add(entity);

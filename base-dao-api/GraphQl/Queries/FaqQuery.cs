@@ -6,6 +6,7 @@ namespace base_dao_api.GraphQl.Queries
     [ExtendObjectType(typeof(Query))]
     public class FaqQuery
     {
+
         public FaqQuery()
         {
         }
