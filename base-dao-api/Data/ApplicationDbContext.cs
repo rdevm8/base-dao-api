@@ -13,19 +13,17 @@ namespace base_dao_api.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
+            // GENERATE GUIDS
             var userIds = new Guid[] { Guid.NewGuid(), Guid.NewGuid()};
             var headerIds = new Guid[] { Guid.NewGuid(), Guid.NewGuid() };
             var detailIds = new Guid[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
 
-            var systemId = userIds[1];
-
             // Apply configuration for the three contexts in our application
             // This will create the demo data for our GraphQL endpoint
 
-            builder.ApplyConfiguration(new CodeHeaderContextConfiguration(headerIds, systemId));
-            builder.ApplyConfiguration(new CodeDetailContextConfiguration(headerIds, detailIds, systemId));
-            builder.ApplyConfiguration(new FaqContextConfiguration(systemId));
+            builder.ApplyConfiguration(new CodeHeaderContextConfiguration(headerIds));
+            builder.ApplyConfiguration(new CodeDetailContextConfiguration(headerIds, detailIds));
+            builder.ApplyConfiguration(new FaqContextConfiguration());
             builder.ApplyConfiguration(new UserContextConfiguration(userIds));
             builder.ApplyConfiguration(new UserRoleContextConfiguration(userIds, detailIds[0]));
             builder.ApplyConfiguration(new PoolContextConfiguration());

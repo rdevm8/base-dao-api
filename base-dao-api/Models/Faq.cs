@@ -3,17 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace base_dao_api.Models
 {
-    public class Faq : Base
+    public class Faq : BaseEntity
     {
         public Faq()
         {
-            Id = Guid.NewGuid();
             Question = String.Empty;
             Answer = String.Empty;
         }
-
-        [Key]
-        public Guid Id { get; set; }
 
         [Required]
         [Range(1,9999)]

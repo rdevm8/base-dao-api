@@ -8,7 +8,6 @@ namespace base_dao_api.Repositories
     {
         public UserRepository(ApplicationDbContext context) : base(context)
         {
-
         }
     }
 }

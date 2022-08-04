@@ -4,17 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace base_dao_api.Models
 {
-    public class Pool : Base
+    public class Pool : BaseEntity
     {
         public Pool()
         {
-            Id = Guid.NewGuid();
             Title = String.Empty;
             Description = String.Empty;
         }
-
-        [Key]
-        public Guid Id { get; set; }
 
         [Required]
         [StringLength(50)]

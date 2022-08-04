@@ -8,12 +8,10 @@ namespace base_dao_api.Data.ContextConfigurations
     {
 
         private readonly Guid[] _ids;
-        private readonly Guid _systemId;
 
-        public CodeHeaderContextConfiguration(Guid[] ids, Guid systemId)
+        public CodeHeaderContextConfiguration(Guid[] ids)
         {
             _ids = ids;
-            _systemId = systemId;
         }
 
         public void Configure(EntityTypeBuilder<CodeHeader> builder)
@@ -26,17 +24,13 @@ namespace base_dao_api.Data.ContextConfigurations
                 {
                     Id = _ids[0],
                     HeaderCd = "ROLE",
-                    Description = "CodeHeader for User Roles",
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Description = "CodeHeader for User Roles"
                 },
                 new CodeHeader
                 {
                     Id = _ids[1],
                     HeaderCd = "PSTATUS",
-                    Description = "CodeHeader for Pool Statuses",
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Description = "CodeHeader for Pool Statuses"
                 });
         }
     }

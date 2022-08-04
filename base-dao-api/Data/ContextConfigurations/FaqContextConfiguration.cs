@@ -6,11 +6,9 @@ namespace base_dao_api.Data.ContextConfigurations
 {
     public class FaqContextConfiguration : IEntityTypeConfiguration<Faq>
     {
-        private readonly Guid _systemId;
-
-        public FaqContextConfiguration(Guid systemId)
+        
+        public FaqContextConfiguration()
         {
-            _systemId = systemId;
         }
 
         public void Configure(EntityTypeBuilder<Faq> builder)
@@ -25,41 +23,31 @@ namespace base_dao_api.Data.ContextConfigurations
                 {
                     Question = "What is Wick's Crew?",
                     Answer = defAnswer,
-                    Order = 1,
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Order = 1
                 },
                 new Faq
                 {
                     Question = "What are Pooling Considerations?",
                     Answer = defAnswer,
-                    Order = 2,
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Order = 2
                 },
                 new Faq
                 {
                     Question = "What are the Pooling Rules?",
                     Answer = defAnswer,
-                    Order = 3,
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Order = 3
                 },
                 new Faq
                 {
                     Question = "What are the Available Pools?",
                     Answer = defAnswer,
-                    Order = 4,
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Order = 4
                 },
                 new Faq
                 {
                     Question = "How are the Funds Distributed?",
                     Answer = defAnswer,
-                    Order = 5,
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Order = 5
                 });
         }
     }

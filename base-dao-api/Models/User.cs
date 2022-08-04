@@ -4,17 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace base_dao_api.Models
 {
-    public class User : Base
+    public class User : BaseEntity
     {
         public User()
         {
-            Id = Guid.NewGuid();
             WalletAddress = String.Empty;
             Name = String.Empty;
         }
-
-        [Key]
-        public Guid Id { get; set; }
 
         [Required]
         [StringLength(42)]

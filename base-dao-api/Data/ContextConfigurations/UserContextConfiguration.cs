@@ -7,12 +7,10 @@ namespace base_dao_api.Data.ContextConfigurations
     public class UserContextConfiguration : IEntityTypeConfiguration<User>
     {
         private readonly Guid[] _ids;
-        private readonly Guid _systemId;
 
         public UserContextConfiguration(Guid[] ids)
         {
             _ids = ids;
-            _systemId = _ids[1];
         }
 
         public void Configure(EntityTypeBuilder<User> builder)
@@ -28,19 +26,15 @@ namespace base_dao_api.Data.ContextConfigurations
                 {
                     Id = _ids[0],
                     WalletAddress = walletAddress,
-                    Name = "",
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Name = ""
 
 
                 },
                 new User
                 {
-                    Id = _systemId,
+                    Id = _ids[1],
                     WalletAddress = "",
-                    Name = "SYSTEM",
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    Name = "SYSTEM"
                 });
         }
     }

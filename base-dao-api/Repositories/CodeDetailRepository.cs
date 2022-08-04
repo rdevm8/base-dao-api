@@ -8,7 +8,7 @@ namespace base_dao_api.Repositories
     {
         public CodeDetailRepository(ApplicationDbContext context) : base(context)
         {
-
+            
         }
     }
 }

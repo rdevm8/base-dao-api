@@ -8,34 +8,30 @@ namespace base_dao_api.Data.ContextConfigurations
     {
         private readonly Guid[] _userIds;
         private readonly Guid _roleId;
-        private readonly Guid _systemId;
 
         public UserRoleContextConfiguration(Guid[] userIds, Guid roleId)
         {
             _userIds = userIds;
             _roleId = roleId;
-            _systemId = _userIds[1];
         }
 
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
+
+            builder.HasOne(x => x.User).WithMany(x => x.UserRoles).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
 
             builder
                 .HasData(
                 new UserRole
                 {
                     CodeDetailId = _roleId,
-                    UserId = _userIds[0],
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    UserId = _userIds[0]
 
                 },
                 new UserRole
                 {
                     CodeDetailId = _roleId,
-                    UserId = _userIds[1],
-                    CreateUserId = _systemId,
-                    UpdateUserId = _systemId
+                    UserId = _userIds[1]
                 });
         }
     }

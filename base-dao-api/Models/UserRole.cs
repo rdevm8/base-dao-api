@@ -4,15 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace base_dao_api.Models
 {
-    public class UserRole : Base
+    public class UserRole : BaseEntity
     {
         public UserRole()
         {
-            Id = Guid.NewGuid();
         }
-
-        [Key]
-        public Guid Id { get; set; }
 
         [ForeignKey("CodeDetailId")]
         public Guid CodeDetailId { get; set; }

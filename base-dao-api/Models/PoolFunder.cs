@@ -4,16 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace base_dao_api.Models
 {
-    public class PoolFunder : Base
+    public class PoolFunder : BaseEntity
     {
         public PoolFunder()
         {
-            Id = Guid.NewGuid();
             WalletAddress = String.Empty;
         }
-
-        [Key]
-        public Guid Id { get; set; }
 
         [Required]
         [StringLength(42)]
