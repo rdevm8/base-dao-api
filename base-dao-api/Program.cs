@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using base_dao_api.Data;
-using base_dao_api.Interfaces;
-using base_dao_api.Repositories;
 using base_dao_api.GraphQl;
 using AutoMapper;
 using base_dao_api.Utilities.MapperConfiguration;
+using base_dao_api.Repositories.UnitOfWork.Interfaces;
+using base_dao_api.Repositories.UnitOfWork;
+using base_dao_api.GraphQl.Queries;
+using base_dao_api.GraphQl.Mutations;
+using FluentValidation.AspNetCore;
+using AppAny.HotChocolate.FluentValidation;
+using base_dao_api.GraphQl.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -28,15 +33,27 @@ builder.Services.AddCors(options =>
         });
 });
 
+// Conigure Fluent Validations
+builder.Services.AddFluentValidation();
+builder.Services.AddTransient<FaqPayloadValidator>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddScoped<ISuperheroRepository, SuperheroRepository>();
-builder.Services.AddScoped<ISuperpowerRepository, SuperpowerRepository>();
-builder.Services.AddScoped<IMovieRepository, MovieRepository>();
-builder.Services.AddGraphQLServer().AddQueryType<Query>().AddMutationType<Mutation>().AddProjections().AddFiltering().AddSorting();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddGraphQLServer()
+    .AddQueryType<Query>()
+    .AddMutationType<Mutation>()
+    .AddTypeExtension<FaqQuery>()
+    .AddTypeExtension<FaqMutation>()
+    .AddProjections()
+    .AddFiltering()
+    .AddSorting()
+    .AddFluentValidation(o =>
+    {
+        o.UseDefaultErrorMapper();
+    });
 
 //AUTO MAPPER
 builder.Services.AddSingleton(mapper);
