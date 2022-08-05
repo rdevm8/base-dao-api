@@ -11,6 +11,10 @@ namespace base_dao_api.Models
             WalletAddress = String.Empty;
         }
 
+        [ForeignKey("PoolId")]
+        public Guid PoolId { get; set; }
+        public Pool Pool { get; set; }
+
         [Required]
         [StringLength(42)]
         public string WalletAddress { get; set; }
@@ -22,9 +26,10 @@ namespace base_dao_api.Models
         [Required]
         public decimal AmtReturned { get; set; }
 
-        [ForeignKey("PoolId")]
-        public Guid PoolId { get; set; }
-        public Pool Pool { get; set; }
+        [ForeignKey("StatusId")]
+        public Guid StatusId { get; set; }
+        public CodeDetail Status { get; set; }
+
 
 
     }

@@ -24,9 +24,9 @@ namespace base_dao_api.Models
         [Range(0.01, 99999999)]
         public decimal MinInvestment { get; set; }
 
-        [ForeignKey("CodeDetailId")]
-        public Guid CodeDetailId { get; set; }
-        public CodeDetail CodeDetail { get; set; }
+        [ForeignKey("StatusId")]
+        public Guid StatusId { get; set; }
+        public CodeDetail Status { get; set; }
 
         public ICollection<PoolFunder> PoolFunders { get; set; }
 

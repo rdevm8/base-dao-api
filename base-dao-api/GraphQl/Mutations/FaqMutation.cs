@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
-using base_dao_api.GraphQl.Payloads;
+using base_dao_api.GraphQl.Mutations.Payloads;
 using base_dao_api.GraphQl.Validators;
 using base_dao_api.Models;
 using base_dao_api.Repositories.UnitOfWork.Interfaces;
 using FluentValidation.Results;
 using AppAny.HotChocolate.FluentValidation;
+using HotChocolate.AspNetCore.Authorization;
 
 namespace base_dao_api.GraphQl.Mutations
 {
@@ -18,6 +19,7 @@ namespace base_dao_api.GraphQl.Mutations
             _mapper = mapper;
         }
 
+        
         public async Task<Faq> AddFaq([Service] IUnitOfWork _unitOfWork,
             [UseFluentValidation, UseValidator<FaqPayloadValidator>]  FaqPayload faq)
         {
@@ -34,7 +36,7 @@ namespace base_dao_api.GraphQl.Mutations
             Guid id,
             [UseFluentValidation, UseValidator<FaqPayloadValidator>] FaqPayload faq)
         {
-            Faq res = _unitOfWork.Faq.Get(id);
+            Faq res = await _unitOfWork.Faq.GetAsync(id);
 
             if (res == null)
             {
@@ -54,7 +56,7 @@ namespace base_dao_api.GraphQl.Mutations
         public async Task<Faq> DeleteFaq([Service] IUnitOfWork _unitOfWork,
             Guid id)
         {
-            Faq res = _unitOfWork.Faq.Get(id);
+            Faq res = await _unitOfWork.Faq.GetAsync(id);
 
             if (res == null)
             {

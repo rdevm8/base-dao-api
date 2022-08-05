@@ -12,6 +12,10 @@ namespace base_dao_api.Models
             Description = String.Empty;
         }
 
+        [ForeignKey("CodeHeaderId")]
+        public Guid CodeHeaderId { get; set; }
+        public CodeHeader CodeHeader { get; set; }
+
         [Required]
         [StringLength(25)]
         public string DetailCd { get; set; }
@@ -20,9 +24,7 @@ namespace base_dao_api.Models
         [StringLength(250)]
         public string Description { get; set; }
 
-        [ForeignKey("CodeHeaderId")]
-        public Guid CodeHeaderId { get; set; }
-        public CodeHeader CodeHeader { get; set; }
+
 
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using base_dao_api.Data;
 
@@ -11,9 +12,10 @@ using base_dao_api.Data;
 namespace base_dao_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220805050116_v0.046")]
+    partial class v0046
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,74 +74,74 @@ namespace base_dao_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2deb65ba-dc2d-4d1d-b65b-96449ca876b2"),
-                            CodeHeaderId = new Guid("cad9cbd3-b334-4827-92da-ba986d07d658"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4549),
+                            Id = new Guid("b6a01cff-8b18-41a6-906b-817126763b73"),
+                            CodeHeaderId = new Guid("5aeaa24b-8168-49c7-9305-a468f0c37a49"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6540),
                             CreatedBy = "SYSTEM",
-                            Description = "System User",
+                            Description = "Admin User",
                             DetailCd = "ROLE-SYSTEM",
                             IsDeleted = false,
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4550),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6540),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("ac07ff79-4792-4d96-9dca-b1c38b2fb5d9"),
-                            CodeHeaderId = new Guid("cad9cbd3-b334-4827-92da-ba986d07d658"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4553),
+                            Id = new Guid("c48d573f-a79f-46a7-8ca2-06cd1db0b8ec"),
+                            CodeHeaderId = new Guid("5aeaa24b-8168-49c7-9305-a468f0c37a49"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6543),
                             CreatedBy = "SYSTEM",
                             Description = "Admin User",
                             DetailCd = "ROLE-ADMIN",
                             IsDeleted = false,
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4554),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6543),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("7508605d-8d64-412d-b432-514810043eb8"),
-                            CodeHeaderId = new Guid("cad9cbd3-b334-4827-92da-ba986d07d658"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4556),
+                            Id = new Guid("a52cb15a-0bf0-44b9-9750-6b90ade160d3"),
+                            CodeHeaderId = new Guid("5aeaa24b-8168-49c7-9305-a468f0c37a49"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6550),
                             CreatedBy = "SYSTEM",
                             Description = "Normal User",
                             DetailCd = "ROLE-NORMAL",
                             IsDeleted = false,
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4556),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6551),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("2379da2d-12d5-41c4-beea-b4811a4ac0fe"),
-                            CodeHeaderId = new Guid("9379bf85-666f-4edc-bd67-3519b29c991c"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4566),
+                            Id = new Guid("fcb4d963-9746-4d98-9203-e6ee6afddc72"),
+                            CodeHeaderId = new Guid("bc9cc106-8cdc-45ae-af8b-9964a6a9da6e"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6553),
                             CreatedBy = "SYSTEM",
                             Description = "Pool OPEN",
                             DetailCd = "PSTATUS-OPEN",
                             IsDeleted = false,
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4566),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6553),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("c937c13b-de72-457b-99fb-40ef1f148628"),
-                            CodeHeaderId = new Guid("9379bf85-666f-4edc-bd67-3519b29c991c"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4569),
+                            Id = new Guid("7d76fcbc-0718-4e98-b6fb-7e8623bb31c3"),
+                            CodeHeaderId = new Guid("bc9cc106-8cdc-45ae-af8b-9964a6a9da6e"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6555),
                             CreatedBy = "SYSTEM",
                             Description = "Pool ONGOING",
                             DetailCd = "PSTATUS-ONGOING",
                             IsDeleted = false,
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4569),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6555),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("f0674d98-917e-4d28-9f47-8a289864e4ae"),
-                            CodeHeaderId = new Guid("9379bf85-666f-4edc-bd67-3519b29c991c"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4572),
+                            Id = new Guid("8be5b810-defc-4603-80a3-18498522c2af"),
+                            CodeHeaderId = new Guid("bc9cc106-8cdc-45ae-af8b-9964a6a9da6e"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6557),
                             CreatedBy = "SYSTEM",
                             Description = "Pool CLOSED",
                             DetailCd = "PSTATUS-CLOSED",
                             IsDeleted = false,
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(4572),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(6557),
                             UpdatedBy = "SYSTEM"
                         });
                 });
@@ -189,24 +191,24 @@ namespace base_dao_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cad9cbd3-b334-4827-92da-ba986d07d658"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(3572),
+                            Id = new Guid("5aeaa24b-8168-49c7-9305-a468f0c37a49"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(5917),
                             CreatedBy = "SYSTEM",
                             Description = "CodeHeader for User Roles",
                             HeaderCd = "ROLE",
                             IsDeleted = false,
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(3575),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(5918),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("9379bf85-666f-4edc-bd67-3519b29c991c"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(3581),
+                            Id = new Guid("bc9cc106-8cdc-45ae-af8b-9964a6a9da6e"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(5923),
                             CreatedBy = "SYSTEM",
                             Description = "CodeHeader for Pool Statuses",
                             HeaderCd = "PSTATUS",
                             IsDeleted = false,
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(3582),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(5923),
                             UpdatedBy = "SYSTEM"
                         });
                 });
@@ -259,211 +261,64 @@ namespace base_dao_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d956ed07-29cf-4ef9-9319-3d6c6221b3a3"),
+                            Id = new Guid("2b7f9a5c-a197-45ee-aca6-8aabfcea2216"),
                             Answer = "At vero eos et accusamus et iusto",
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5084),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7060),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
                             Order = 1,
                             Question = "What is Wick's Crew?",
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5085),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7061),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("2c7fc0c2-4d1e-43fc-9edd-04a206fe3e32"),
+                            Id = new Guid("1c1c215e-7df5-4eaa-bd9c-f0ccc1d5908e"),
                             Answer = "At vero eos et accusamus et iusto",
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5087),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7064),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
                             Order = 2,
                             Question = "What are Pooling Considerations?",
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5088),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7064),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("0152d32b-4ba9-4175-92f3-10b21218ad67"),
+                            Id = new Guid("207b1456-cf51-4d45-9846-321b8179f9da"),
                             Answer = "At vero eos et accusamus et iusto",
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5089),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7065),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
                             Order = 3,
                             Question = "What are the Pooling Rules?",
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5090),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7066),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("42a8e54c-fe7b-4eca-a9e5-4b7e5cf4a753"),
+                            Id = new Guid("f731c6a6-110b-4cc3-afee-43eaff457910"),
                             Answer = "At vero eos et accusamus et iusto",
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5091),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7067),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
                             Order = 4,
                             Question = "What are the Available Pools?",
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5091),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7067),
                             UpdatedBy = "SYSTEM"
                         },
                         new
                         {
-                            Id = new Guid("207a74dd-90a5-4d95-90e5-20d32029bf81"),
+                            Id = new Guid("51dbae03-805d-4242-8ef1-02efb10a5168"),
                             Answer = "At vero eos et accusamus et iusto",
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5092),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7072),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
                             Order = 5,
                             Question = "How are the Funds Distributed?",
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5093),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7073),
                             UpdatedBy = "SYSTEM"
                         });
-                });
-
-            modelBuilder.Entity("base_dao_api.Models.Pool", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDttm")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal>("MinInvestment")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("StatusId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime?>("UpdateDttm")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StatusId");
-
-                    b.ToTable("Pools");
-                });
-
-            modelBuilder.Entity("base_dao_api.Models.PoolActivity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDttm")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("PoolId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("StatusId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdateDttm")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PoolId");
-
-                    b.HasIndex("StatusId");
-
-                    b.ToTable("PoolActivities");
-                });
-
-            modelBuilder.Entity("base_dao_api.Models.PoolFunder", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("AmtInvested")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("AmtReturned")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("CreateDttm")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("PoolId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("StatusId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdateDttm")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("WalletAddress")
-                        .IsRequired()
-                        .HasMaxLength(42)
-                        .HasColumnType("nvarchar(42)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PoolId");
-
-                    b.HasIndex("StatusId");
-
-                    b.ToTable("PoolFunders");
                 });
 
             modelBuilder.Entity("base_dao_api.Models.User", b =>
@@ -511,23 +366,23 @@ namespace base_dao_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b4a19bc7-abb2-44e7-b9eb-dc866dae266d"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5693),
+                            Id = new Guid("9683e940-7b90-4042-9644-12366e58f384"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7470),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
                             Name = "SYSTEM",
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5694),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7471),
                             UpdatedBy = "SYSTEM",
                             WalletAddress = "0x8c268f32D7F129ac0D9FB1E5B490d90810dFa446"
                         },
                         new
                         {
-                            Id = new Guid("2afbf58b-c7a9-4494-8037-7f2835fbc9a7"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5697),
+                            Id = new Guid("abd61b3c-8f38-4b39-bdc3-4b536fd8aab2"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7475),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
                             Name = "ADMIN-1",
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(5698),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(7475),
                             UpdatedBy = "SYSTEM",
                             WalletAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
                         });
@@ -575,25 +430,25 @@ namespace base_dao_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1bc3c37a-ea63-4e23-a8d4-3d0e43323749"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(6975),
+                            Id = new Guid("369988ce-c583-4bc8-801f-38e60259da0e"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(8525),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
-                            RoleId = new Guid("2deb65ba-dc2d-4d1d-b65b-96449ca876b2"),
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(6976),
+                            RoleId = new Guid("b6a01cff-8b18-41a6-906b-817126763b73"),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(8526),
                             UpdatedBy = "SYSTEM",
-                            UserId = new Guid("b4a19bc7-abb2-44e7-b9eb-dc866dae266d")
+                            UserId = new Guid("9683e940-7b90-4042-9644-12366e58f384")
                         },
                         new
                         {
-                            Id = new Guid("de19548f-9628-4159-b4a8-6b95913bce1a"),
-                            CreateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(6979),
+                            Id = new Guid("6d43294f-f9d2-440d-b7bd-0957944bdefa"),
+                            CreateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(8528),
                             CreatedBy = "SYSTEM",
                             IsDeleted = false,
-                            RoleId = new Guid("ac07ff79-4792-4d96-9dca-b1c38b2fb5d9"),
-                            UpdateDttm = new DateTime(2022, 8, 5, 5, 12, 24, 344, DateTimeKind.Utc).AddTicks(6980),
+                            RoleId = new Guid("c48d573f-a79f-46a7-8ca2-06cd1db0b8ec"),
+                            UpdateDttm = new DateTime(2022, 8, 5, 5, 1, 16, 207, DateTimeKind.Utc).AddTicks(8528),
                             UpdatedBy = "SYSTEM",
-                            UserId = new Guid("2afbf58b-c7a9-4494-8037-7f2835fbc9a7")
+                            UserId = new Guid("abd61b3c-8f38-4b39-bdc3-4b536fd8aab2")
                         });
                 });
 
@@ -606,55 +461,6 @@ namespace base_dao_api.Migrations
                         .IsRequired();
 
                     b.Navigation("CodeHeader");
-                });
-
-            modelBuilder.Entity("base_dao_api.Models.Pool", b =>
-                {
-                    b.HasOne("base_dao_api.Models.CodeDetail", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Status");
-                });
-
-            modelBuilder.Entity("base_dao_api.Models.PoolActivity", b =>
-                {
-                    b.HasOne("base_dao_api.Models.Pool", "Pool")
-                        .WithMany("PoolActivities")
-                        .HasForeignKey("PoolId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("base_dao_api.Models.CodeDetail", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pool");
-
-                    b.Navigation("Status");
-                });
-
-            modelBuilder.Entity("base_dao_api.Models.PoolFunder", b =>
-                {
-                    b.HasOne("base_dao_api.Models.Pool", "Pool")
-                        .WithMany("PoolFunders")
-                        .HasForeignKey("PoolId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("base_dao_api.Models.CodeDetail", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pool");
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("base_dao_api.Models.UserRole", b =>
@@ -679,13 +485,6 @@ namespace base_dao_api.Migrations
             modelBuilder.Entity("base_dao_api.Models.CodeHeader", b =>
                 {
                     b.Navigation("CodeDetails");
-                });
-
-            modelBuilder.Entity("base_dao_api.Models.Pool", b =>
-                {
-                    b.Navigation("PoolActivities");
-
-                    b.Navigation("PoolFunders");
                 });
 
             modelBuilder.Entity("base_dao_api.Models.User", b =>

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace base_dao_api.GraphQl.Payloads
+namespace base_dao_api.GraphQl.Mutations.Payloads
 {
     public class FaqPayload
     {

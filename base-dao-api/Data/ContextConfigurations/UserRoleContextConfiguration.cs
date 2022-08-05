@@ -7,9 +7,9 @@ namespace base_dao_api.Data.ContextConfigurations
     public class UserRoleContextConfiguration : IEntityTypeConfiguration<UserRole>
     {
         private readonly Guid[] _userIds;
-        private readonly Guid _roleId;
+        private readonly Guid[] _roleId;
 
-        public UserRoleContextConfiguration(Guid[] userIds, Guid roleId)
+        public UserRoleContextConfiguration(Guid[] userIds, Guid[] roleId)
         {
             _userIds = userIds;
             _roleId = roleId;
@@ -24,13 +24,13 @@ namespace base_dao_api.Data.ContextConfigurations
                 .HasData(
                 new UserRole
                 {
-                    CodeDetailId = _roleId,
+                    RoleId = _roleId[0],
                     UserId = _userIds[0]
 
                 },
                 new UserRole
                 {
-                    CodeDetailId = _roleId,
+                    RoleId = _roleId[1],
                     UserId = _userIds[1]
                 });
         }

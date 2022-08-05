@@ -10,13 +10,15 @@ namespace base_dao_api.Models
         {
         }
 
-        [ForeignKey("CodeDetailId")]
-        public Guid CodeDetailId { get; set; }
-        public CodeDetail CodeDetail { get; set; }
-
         [ForeignKey("UserId")]
         public Guid UserId { get; set; }
         public User User { get; set; }
+
+        [ForeignKey("RoleId")]
+        public Guid RoleId { get; set; }
+        public CodeDetail Role { get; set; }
+
+
 
     }
 }

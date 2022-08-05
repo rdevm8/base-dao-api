@@ -11,18 +11,19 @@ namespace base_dao_api.Models
             Description = String.Empty;
         }
 
-        [ForeignKey("CodeDetailId")]
-        public Guid CodeDetailId { get; set; }
-        public CodeDetail CodeDetail { get; set; }
+        [ForeignKey("PoolId")]
+        public Guid PoolId { get; set; }
+        public Pool Pool { get; set; }
 
 
         [Required]
         [StringLength(250)]
         public string Description { get; set; }
 
-        [ForeignKey("PoolId")]
-        public Guid PoolId { get; set; }
-        public Pool Pool { get; set; }
+        [ForeignKey("StatusId")]
+        public Guid StatusId { get; set; }
+        public CodeDetail Status { get; set; }
+
 
 
     }

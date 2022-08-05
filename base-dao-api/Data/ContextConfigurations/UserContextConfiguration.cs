@@ -25,16 +25,14 @@ namespace base_dao_api.Data.ContextConfigurations
                 new User
                 {
                     Id = _ids[0],
-                    WalletAddress = walletAddress,
-                    Name = ""
-
-
+                    WalletAddress = "0x8c268f32D7F129ac0D9FB1E5B490d90810dFa446",
+                    Name = "SYSTEM"
                 },
                 new User
                 {
                     Id = _ids[1],
-                    WalletAddress = "",
-                    Name = "SYSTEM"
+                    WalletAddress = walletAddress,
+                    Name = "ADMIN-1"
                 });
         }
     }
