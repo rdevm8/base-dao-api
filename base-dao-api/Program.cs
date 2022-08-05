@@ -41,6 +41,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddFluentValidation();
 builder.Services.AddTransient<FaqPayloadValidator>();
 builder.Services.AddTransient<LoginPayloadValidator>();
+builder.Services.AddTransient<PoolPayloadValidator>();
+builder.Services.AddTransient<PoolStatusPayloadValidator>();
+builder.Services.AddTransient<PoolFunderPayloadValidator>();
 
 // Setting Up JWT Authentication
 builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));
@@ -70,6 +73,8 @@ builder.Services.AddGraphQLServer()
     .AddTypeExtension<FaqQuery>()
     .AddTypeExtension<FaqMutation>()
     .AddTypeExtension<LoginMutation>()
+    .AddTypeExtension<PoolMutation>()
+    .AddTypeExtension<PoolFunderMutation>()
     .AddAuthorization()
     .AddProjections()
     .AddFiltering()

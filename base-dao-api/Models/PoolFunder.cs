@@ -9,6 +9,7 @@ namespace base_dao_api.Models
         public PoolFunder()
         {
             WalletAddress = String.Empty;
+            AmtReturned = 0;
         }
 
         [ForeignKey("PoolId")]

@@ -47,7 +47,8 @@ namespace base_dao_api.GraphQl.Mutations
 
             var claims = new Claim[]
             {
-                new Claim(ClaimTypes.Role, claimRole)
+                new Claim(ClaimTypes.Role, claimRole),
+                new Claim(ClaimTypes.NameIdentifier, (user == null ? login.WalletAddress : user.WalletAddress))
             };
 
             var jwtToken = new JwtSecurityToken(

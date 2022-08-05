@@ -9,6 +9,8 @@ namespace base_dao_api.Utilities.MapperConfiguration
         public AutoMapperProfile()
         {
             CreateMap<Faq, FaqPayload>().ReverseMap();
+            CreateMap<Pool, PoolPayload>().ReverseMap();
+            CreateMap<PoolFunder, PoolFunderPayload>().ReverseMap();
         }
     }
 }

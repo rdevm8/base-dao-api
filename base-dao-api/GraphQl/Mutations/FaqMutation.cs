@@ -19,7 +19,7 @@ namespace base_dao_api.GraphQl.Mutations
             _mapper = mapper;
         }
 
-        
+        [Authorize(Roles = new[] { "ROLE-SYSTEM" })]
         public async Task<Faq> AddFaq([Service] IUnitOfWork _unitOfWork,
             [UseFluentValidation, UseValidator<FaqPayloadValidator>]  FaqPayload faq)
         {
@@ -32,6 +32,7 @@ namespace base_dao_api.GraphQl.Mutations
             return res;
         }
 
+        [Authorize(Roles = new[] { "ROLE-SYSTEM" })]
         public async Task<Faq> UpdateFaq([Service] IUnitOfWork _unitOfWork,
             Guid id,
             [UseFluentValidation, UseValidator<FaqPayloadValidator>] FaqPayload faq)
@@ -53,6 +54,7 @@ namespace base_dao_api.GraphQl.Mutations
             return res;
         }
 
+        [Authorize(Roles = new[] { "ROLE-SYSTEM" })]
         public async Task<Faq> DeleteFaq([Service] IUnitOfWork _unitOfWork,
             Guid id)
         {
@@ -64,6 +66,7 @@ namespace base_dao_api.GraphQl.Mutations
             }
 
             res.IsDeleted = true;
+            res.UpdateDttm = DateTime.UtcNow;
 
             _unitOfWork.Faq.Update(res);
 

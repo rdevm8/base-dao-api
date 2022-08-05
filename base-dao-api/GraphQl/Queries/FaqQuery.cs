@@ -13,7 +13,7 @@ namespace base_dao_api.GraphQl.Queries
         {
         }
 
-        [Authorize(Roles = new[] { "ROLE-SYSTEM" })]
+        [Authorize]
         [UseProjection]
         [UseFiltering]
         [UseSorting]
