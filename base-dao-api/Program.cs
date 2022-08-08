@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using base_dao_api.Data;
-using base_dao_api.GraphQl;
 using AutoMapper;
 using base_dao_api.Utilities.MapperConfiguration;
 using base_dao_api.Repositories.UnitOfWork.Interfaces;
@@ -14,9 +13,6 @@ using base_dao_api.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Security.Claims;
-using base_dao_api.Utilities.Interceptors;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -72,6 +68,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<FaqQuery>();
+builder.Services.AddScoped<PoolQuery>();
+builder.Services.AddScoped<CodeDetailQuery>();
 builder.Services.AddScoped<FaqMutation>();
 builder.Services.AddScoped<LoginMutation>();
 builder.Services.AddScoped<PoolMutation>();
@@ -82,6 +80,8 @@ builder.Services.AddGraphQLServer()
     .AddQueryType()
     .AddMutationType()
     .AddTypeExtension<FaqQuery>()
+    .AddTypeExtension<CodeDetailQuery>()
+    .AddTypeExtension<PoolQuery>()
     .AddTypeExtension<FaqMutation>()
     .AddTypeExtension<LoginMutation>()
     .AddTypeExtension<PoolMutation>()
