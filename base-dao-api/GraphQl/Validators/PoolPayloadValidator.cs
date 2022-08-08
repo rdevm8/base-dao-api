@@ -5,7 +5,6 @@ namespace base_dao_api.GraphQl.Validators
 {
     public class PoolPayloadValidator : AbstractValidator<PoolPayload>, IValidator
     {
-        double min = 0.01;
         public PoolPayloadValidator()
         {
             RuleFor(x => x.Title)

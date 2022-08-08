@@ -7,6 +7,7 @@ namespace base_dao_api.GraphQl.Mutations.Payloads
         [Required]
         [StringLength(42, MinimumLength =1)]
         public string WalletAddress { get; set; } = String.Empty;
+        [Required]
         public decimal AmtInvested { get; set; }
     }
 }

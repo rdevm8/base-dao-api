@@ -12,6 +12,7 @@ namespace base_dao_api.GraphQl.Validators
                 .MaximumLength(42);
 
             RuleFor(x => x.AmtInvested)
+                .NotNull()
                 .GreaterThan(0)
                 .ScalePrecision(2, 18);
         }

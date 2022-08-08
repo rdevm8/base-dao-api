@@ -31,6 +31,18 @@ namespace base_dao_api.Data.ContextConfigurations
                     Id = _ids[1],
                     HeaderCd = "PSTATUS",
                     Description = "CodeHeader for Pool Statuses"
+                },
+                new CodeHeader
+                {
+                    Id = _ids[2],
+                    HeaderCd = "PFSTATUS",
+                    Description = "CodeHeader for Pool Funder Statuses"
+                },
+                new CodeHeader
+                {
+                    Id = _ids[3],
+                    HeaderCd = "PASTATUS",
+                    Description = "CodeHeader for Pool Activity Statuses"
                 });
         }
     }

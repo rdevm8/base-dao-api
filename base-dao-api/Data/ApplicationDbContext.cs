@@ -15,8 +15,8 @@ namespace base_dao_api.Data
         {
             // GENERATE GUIDS
             var userIds = new Guid[] { Guid.NewGuid(), Guid.NewGuid()};
-            var headerIds = new Guid[] { Guid.NewGuid(), Guid.NewGuid() };
-            var detailIds = new Guid[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
+            var headerIds = new Guid[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
+            var detailIds = new Guid[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
 
             // Apply configuration for the three contexts in our application
             // This will create the demo data for our GraphQL endpoint

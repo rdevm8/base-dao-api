@@ -14,6 +14,9 @@ using base_dao_api.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Security.Claims;
+using base_dao_api.Utilities.Interceptors;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -45,6 +48,7 @@ builder.Services.AddTransient<PoolPayloadValidator>();
 builder.Services.AddTransient<PoolStatusPayloadValidator>();
 builder.Services.AddTransient<PoolFunderPayloadValidator>();
 
+
 // Setting Up JWT Authentication
 builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -67,9 +71,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<FaqQuery>();
+builder.Services.AddScoped<FaqMutation>();
+builder.Services.AddScoped<LoginMutation>();
+builder.Services.AddScoped<PoolMutation>();
+builder.Services.AddScoped<PoolFunderMutation>();
 builder.Services.AddGraphQLServer()
-    .AddQueryType<Query>()
-    .AddMutationType<Mutation>()
+    .RegisterService<IUnitOfWork>()
+    //.AddHttpRequestInterceptor<HttpRequestInterceptor>()
+    .AddQueryType()
+    .AddMutationType()
     .AddTypeExtension<FaqQuery>()
     .AddTypeExtension<FaqMutation>()
     .AddTypeExtension<LoginMutation>()
@@ -83,7 +94,6 @@ builder.Services.AddGraphQLServer()
     {
         o.UseDefaultErrorMapper();
     });
-
 //AUTO MAPPER
 builder.Services.AddSingleton(mapper);
 

@@ -7,21 +7,26 @@ using FluentValidation.Results;
 using AppAny.HotChocolate.FluentValidation;
 using HotChocolate.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using base_dao_api.Utilities.Extensions;
+using System.Security.Claims;
+using base_dao_api.Utilities.Constants;
 
 namespace base_dao_api.GraphQl.Mutations
 {
-    [ExtendObjectType(typeof(Mutation))]
+    [ExtendObjectType(OperationTypeNames.Mutation)]
     public class PoolFunderMutation
     {
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PoolFunderMutation(IMapper mapper)
+        public PoolFunderMutation(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
-        [Authorize(Roles = new[] { "ROLE-SYSTEM" })]
-        public async Task<PoolFunder> AddPoolFunder([Service] IUnitOfWork _unitOfWork,
+        [Authorize(Roles = new[] { RoleCodes.System, RoleCodes.Admin, RoleCodes.Normal })]
+        public async Task<PoolFunder> AddPoolFunder(ClaimsPrincipal _claimsPrincipal,
             Guid id,
             [UseFluentValidation, UseValidator<PoolFunderPayloadValidator>]  PoolFunderPayload poolFunder)
         {
@@ -36,34 +41,80 @@ namespace base_dao_api.GraphQl.Mutations
             }
             else
             {
-                if (pool.Status.DetailCd != "PSTATUS-OPEN")
+                if (pool.Status.DetailCd != PoolCodes.Open)
                 {
-                    throw new GraphQLException(new Error("Cannot add pool funder when Pool is already on going"));
+                    throw new GraphQLException(new Error("Cannot add pool funder when Pool is already on-going or closed"));
+                }
+
+                if (_claimsPrincipal.GetUserRole() == RoleCodes.Normal && poolFunder.WalletAddress != _claimsPrincipal.GetUserWallet())
+                {
+                    throw new GraphQLException(new Error("User is not authorized to add pool"));
                 }
             }
 
-            PoolFunder res = _mapper.Map<PoolFunder>(poolFunder);
-            res.PoolId = pool.Id;
-            res.StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == "PFSATUS-IN")).Select(x => x.Id).FirstOrDefault();
+            PoolFunder res = (await _unitOfWork.PoolFunder.GetAsync(
+                filter: x => x.PoolId == id && x.WalletAddress == poolFunder.WalletAddress,
+                include: x => x.Include(y => y.Status)
+                )).FirstOrDefault();
 
-            _unitOfWork.PoolFunder.Add(res);
+            if (res == null)
+            {
+                // NULL
+                res = _mapper.Map<PoolFunder>(poolFunder);
+                res.PoolId = pool.Id;
+                res.StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == PoolFunderCodes.In)).Select(x => x.Id).FirstOrDefault();
+                res.CreatedBy = _claimsPrincipal.GetUserName();
+                res.UpdatedBy = _claimsPrincipal.GetUserName();
+
+                _unitOfWork.PoolFunder.Add(res);
+            }
+            else
+            {
+                // APPENDING
+                res.StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == PoolFunderCodes.In)).Select(x => x.Id).FirstOrDefault();
+                res.AmtInvested += poolFunder.AmtInvested;
+                res.UpdatedBy = _claimsPrincipal.GetUserName();
+                res.UpdateDttm = DateTime.UtcNow;
+
+            }
 
             await _unitOfWork.SaveAsync();
             return res;
         }
 
-        [Authorize(Roles = new[] { "ROLE-SYSTEM" })]
-        public async Task<PoolFunder> Withdraw([Service] IUnitOfWork _unitOfWork,
+        [Authorize(Roles = new[] { RoleCodes.System, RoleCodes.Admin, RoleCodes.Normal })]
+        public async Task<PoolFunder> Withdraw(ClaimsPrincipal _claimsPrincipal,
             Guid id)
         {
-            PoolFunder res = await _unitOfWork.PoolFunder.GetAsync(id);
+            PoolFunder res = (await _unitOfWork.PoolFunder.GetAsync(
+                filter: x => x.Id == id,
+                include: x => x.Include(y => y.Status).Include(y => y.Pool).ThenInclude(z => z.Status)
+                )).FirstOrDefault();
 
             if (res == null)
             {
                 throw new GraphQLException(new Error("Pool Funder not found!"));
             }
+            else
+            {
+                if (_claimsPrincipal.GetUserRole() == RoleCodes.Normal && res.WalletAddress != _claimsPrincipal.GetUserWallet())
+                {
+                    throw new GraphQLException(new Error("User is not authorized to withdraw"));
+                }
+              
+                if (res.Status.DetailCd != PoolFunderCodes.In)
+                {
+                    throw new GraphQLException(new Error("User has already withdrawn"));
+                }
 
-            res.StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == "PFSATUS-OUT")).Select(x => x.Id).FirstOrDefault();
+                if (res.Pool.Status.DetailCd != PoolCodes.Open)
+                {
+                    throw new GraphQLException(new Error("Cannot withdraw when Pool is already on-going or closed"));
+                }
+            }
+
+            res.StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == PoolFunderCodes.Out)).Select(x => x.Id).FirstOrDefault();
+            res.UpdatedBy = _claimsPrincipal.GetUserName();
             res.UpdateDttm = DateTime.UtcNow;
 
             _unitOfWork.PoolFunder.Update(res);
@@ -72,8 +123,8 @@ namespace base_dao_api.GraphQl.Mutations
             return res;
         }
 
-        [Authorize(Roles = new[] { "ROLE-SYSTEM" })]
-        public async Task<PoolFunder> DeletePoolFunder([Service] IUnitOfWork _unitOfWork,
+        [Authorize(Roles = new[] { RoleCodes.System })]
+        public async Task<PoolFunder> DeletePoolFunder(ClaimsPrincipal _claimsPrincipal,
             Guid id)
         {
             PoolFunder res = await _unitOfWork.PoolFunder.GetAsync(id);
@@ -84,6 +135,7 @@ namespace base_dao_api.GraphQl.Mutations
             }
 
             res.IsDeleted = true;
+            res.UpdatedBy = _claimsPrincipal.GetUserName();
             res.UpdateDttm = DateTime.UtcNow;
 
             _unitOfWork.PoolFunder.Update(res);

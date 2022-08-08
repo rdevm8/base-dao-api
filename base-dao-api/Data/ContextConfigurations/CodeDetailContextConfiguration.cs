@@ -63,6 +63,41 @@ namespace base_dao_api.Data.ContextConfigurations
                     DetailCd = "PSTATUS-CLOSED",
                     Description = "Pool CLOSED",
                     CodeHeaderId = _headerIds[1]
+                },
+                new CodeDetail
+                {
+                    Id = _detailIds[6],
+                    DetailCd = "PFSTATUS-IN",
+                    Description = "Pool funder IN",
+                    CodeHeaderId = _headerIds[2]
+                },
+                new CodeDetail
+                {
+                    Id = _detailIds[7],
+                    DetailCd = "PFTATUS-OUT",
+                    Description = "Pool funder OUT",
+                    CodeHeaderId = _headerIds[2]
+                },
+                new CodeDetail
+                {
+                    Id = _detailIds[8],
+                    DetailCd = "PASTATUS-SU",
+                    Description = "Pool activity status update",
+                    CodeHeaderId = _headerIds[3]
+                },
+                new CodeDetail
+                {
+                    Id = _detailIds[9],
+                    DetailCd = "PASTATUS-PU",
+                    Description = "Pool activity descriptions update",
+                    CodeHeaderId = _headerIds[3]
+                },
+                new CodeDetail
+                {
+                    Id = _detailIds[10],
+                    DetailCd = "PASTATUS-FU",
+                    Description = "Pool activity funders update",
+                    CodeHeaderId = _headerIds[3]
                 }
                 );
         }
