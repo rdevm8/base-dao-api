@@ -48,7 +48,7 @@ namespace base_dao_api.GraphQl.Mutations
 
             if (res == null)
             {
-                throw new GraphQLException(new Error("Faq not found!"));
+                throw new GraphQLException(new Error(ErrorDescriptions.EntityNotFound));
             }
 
             res.Question = faq.Question;
@@ -70,7 +70,7 @@ namespace base_dao_api.GraphQl.Mutations
 
             if (res == null)
             {
-                throw new GraphQLException(new Error("Faq not found!"));
+                throw new GraphQLException(new Error(ErrorDescriptions.EntityNotFound));
             }
 
             res.IsDeleted = true;

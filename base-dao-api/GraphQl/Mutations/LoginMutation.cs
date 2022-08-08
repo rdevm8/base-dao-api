@@ -35,7 +35,7 @@ namespace base_dao_api.GraphQl.Mutations
 
             // USER VALIDATION
             User user = (await _unitOfWork.User.GetAsync(
-                filter: x => x.WalletAddress == login.WalletAddress && x.IsDeleted == false,
+                filter: x => x.WalletAddress.ToUpper() == login.WalletAddress.ToUpper() && x.IsDeleted == false,
                 include: x => x.Include(y => y.UserRoles).ThenInclude(z => z.Role)
                 )).FirstOrDefault();
 

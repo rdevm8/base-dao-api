@@ -32,23 +32,23 @@ namespace base_dao_api.GraphQl.Mutations
         {
             Pool pool = (await _unitOfWork.Pool.GetAsync(
                 filter: x => x.Id == id,
-                include: x => x.Include(y => y.Status)
+                include: x => x.Include(y => y.Status).Include(z => z.PoolActivities)
                 )).FirstOrDefault();
 
             if (pool == null)
             {
-                throw new GraphQLException(new Error("Pool not found!"));
+                throw new GraphQLException(new Error(ErrorDescriptions.EntityNotFound));
             }
             else
             {
                 if (pool.Status.DetailCd != PoolCodes.Open)
                 {
-                    throw new GraphQLException(new Error("Cannot add pool funder when Pool is already on-going or closed"));
+                    throw new GraphQLException(new Error(ErrorDescriptions.PoolShouldBeOpen));
                 }
 
                 if (_claimsPrincipal.GetUserRole() == RoleCodes.Normal && poolFunder.WalletAddress != _claimsPrincipal.GetUserWallet())
                 {
-                    throw new GraphQLException(new Error("User is not authorized to add pool"));
+                    throw new GraphQLException(new Error(ErrorDescriptions.NotAuthorized));
                 }
             }
 
@@ -93,23 +93,23 @@ namespace base_dao_api.GraphQl.Mutations
 
             if (res == null)
             {
-                throw new GraphQLException(new Error("Pool Funder not found!"));
+                throw new GraphQLException(new Error(ErrorDescriptions.EntityNotFound));
             }
             else
             {
                 if (_claimsPrincipal.GetUserRole() == RoleCodes.Normal && res.WalletAddress != _claimsPrincipal.GetUserWallet())
                 {
-                    throw new GraphQLException(new Error("User is not authorized to withdraw"));
+                    throw new GraphQLException(new Error(ErrorDescriptions.NotAuthorized));
                 }
               
                 if (res.Status.DetailCd != PoolFunderCodes.In)
                 {
-                    throw new GraphQLException(new Error("User has already withdrawn"));
+                    throw new GraphQLException(new Error(ErrorDescriptions.FunderWithdrawn));
                 }
 
                 if (res.Pool.Status.DetailCd != PoolCodes.Open)
                 {
-                    throw new GraphQLException(new Error("Cannot withdraw when Pool is already on-going or closed"));
+                    throw new GraphQLException(new Error(ErrorDescriptions.PoolShouldBeOpen));
                 }
             }
 
@@ -131,7 +131,7 @@ namespace base_dao_api.GraphQl.Mutations
 
             if (res == null)
             {
-                throw new GraphQLException(new Error("Pool Funder not found!"));
+                throw new GraphQLException(new Error(ErrorDescriptions.EntityNotFound));
             }
 
             res.IsDeleted = true;

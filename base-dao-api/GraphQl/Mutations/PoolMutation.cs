@@ -9,6 +9,7 @@ using HotChocolate.AspNetCore.Authorization;
 using base_dao_api.Utilities.Constants;
 using System.Security.Claims;
 using base_dao_api.Utilities.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace base_dao_api.GraphQl.Mutations
 {
@@ -35,7 +36,14 @@ namespace base_dao_api.GraphQl.Mutations
             res.CreatedBy = _claimsPrincipal.GetUserName();
             res.UpdatedBy = _claimsPrincipal.GetUserName();
 
-            res = await UpdatePoolActivity(res, PoolActivityCodes.StatusUpdate, "Pool added", _claimsPrincipal.GetUserName());
+            _unitOfWork.PoolActivity.Add(new PoolActivity
+            {
+                PoolId = res.Id,
+                StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == PoolActivityCodes.StatusUpdate)).Select(x => x.Id).FirstOrDefault(),
+                Description = PoolActivityDescriptions.Added,
+                CreatedBy = _claimsPrincipal.GetUserName(),
+                UpdatedBy = _claimsPrincipal.GetUserName(),
+            });
 
             _unitOfWork.Pool.Add(res);
 
@@ -52,7 +60,7 @@ namespace base_dao_api.GraphQl.Mutations
 
             if (res == null)
             {
-                throw new GraphQLException(new Error("Pool not found!"));
+                throw new GraphQLException(new Error(ErrorDescriptions.EntityNotFound));
             }
 
             res.Title = pool.Title;
@@ -60,8 +68,14 @@ namespace base_dao_api.GraphQl.Mutations
             res.UpdatedBy = _claimsPrincipal.GetUserName();
             res.UpdateDttm = DateTime.UtcNow;
 
-            res = await UpdatePoolActivity(res, PoolActivityCodes.DetailsUpdate, "Pool details updated", _claimsPrincipal.GetUserName());
-
+            _unitOfWork.PoolActivity.Add(new PoolActivity
+            {
+                PoolId = res.Id,
+                StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == PoolActivityCodes.DetailsUpdate)).Select(x => x.Id).FirstOrDefault(),
+                Description = PoolActivityDescriptions.DetailsUpdated,
+                CreatedBy = _claimsPrincipal.GetUserName(),
+                UpdatedBy = _claimsPrincipal.GetUserName(),
+            });
 
             _unitOfWork.Pool.Update(res);
 
@@ -78,14 +92,22 @@ namespace base_dao_api.GraphQl.Mutations
 
             if (res == null)
             {
-                throw new GraphQLException(new Error("Pool not found!"));
+                throw new GraphQLException(new Error(ErrorDescriptions.EntityNotFound));
             }
 
             res.StatusId = poolStatus.StatusId;
             res.UpdatedBy = _claimsPrincipal.GetUserName();
             res.UpdateDttm = DateTime.UtcNow;
 
-            res = await UpdatePoolActivity(res, PoolActivityCodes.StatusUpdate, "Pool status updated", _claimsPrincipal.GetUserName());
+            _unitOfWork.PoolActivity.Add(new PoolActivity
+            {
+                PoolId = res.Id,
+                StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == PoolActivityCodes.StatusUpdate)).Select(x => x.Id).FirstOrDefault(),
+                Description = PoolActivityDescriptions.StatusUpdated,
+                CreatedBy = _claimsPrincipal.GetUserName(),
+                UpdatedBy = _claimsPrincipal.GetUserName(),
+            });
+
 
             _unitOfWork.Pool.Update(res);
 
@@ -101,32 +123,25 @@ namespace base_dao_api.GraphQl.Mutations
 
             if (res == null)
             {
-                throw new GraphQLException(new Error("Pool not found!"));
+                throw new GraphQLException(new Error(ErrorDescriptions.EntityNotFound));
             }
 
             res.IsDeleted = true;
             res.UpdatedBy = _claimsPrincipal.GetUserName();
             res.UpdateDttm = DateTime.UtcNow;
 
-            res = await UpdatePoolActivity(res, PoolActivityCodes.StatusUpdate, "Pool deleted", _claimsPrincipal.GetUserName());
+            _unitOfWork.PoolActivity.Add(new PoolActivity
+            {
+                PoolId = res.Id,
+                StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == PoolActivityCodes.StatusUpdate)).Select(x => x.Id).FirstOrDefault(),
+                Description = PoolActivityDescriptions.Deleted,
+                CreatedBy = _claimsPrincipal.GetUserName(),
+                UpdatedBy = _claimsPrincipal.GetUserName(),
+            });
 
             _unitOfWork.Pool.Update(res);
 
             await _unitOfWork.SaveAsync();
-            return res;
-        }
-
-        private async Task<Pool> UpdatePoolActivity(Pool res, string poolActivityCd, string description, string currentUser)
-        {
-            res.PoolActivities.Add(new PoolActivity
-            {
-                PoolId = res.Id,
-                StatusId = (await _unitOfWork.CodeDetail.GetAsync(x => x.DetailCd == poolActivityCd)).Select(x => x.Id).FirstOrDefault(),
-                Description = description,
-                CreatedBy = currentUser,
-                UpdatedBy = currentUser
-            });
-
             return res;
         }
     }
